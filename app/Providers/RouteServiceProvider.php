@@ -17,6 +17,7 @@ use function sha1;
 
 final class RouteServiceProvider extends ServiceProvider
 {
+    const HOME = '/';
     protected $namespace = '\\App\\Http\\Controllers\\';
 
     /**

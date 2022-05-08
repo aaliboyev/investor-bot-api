@@ -7,6 +7,7 @@ namespace App\Http;
 use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
+use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\ThrottleRequests;
 use App\Http\Middleware\TrimStrings;
 use App\Http\Middleware\TrustProxies;
@@ -61,7 +62,10 @@ final class Kernel extends HttpKernel
         ],
 
         'api' => [
-            SubstituteBindings::class,
+//            SubstituteBindings::class,
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            'throttle:api',
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
@@ -81,5 +85,6 @@ final class Kernel extends HttpKernel
         'signed'           => ValidateSignature::class,
         'throttle'         => ThrottleRequests::class,
         'verified'         => EnsureEmailIsVerified::class,
+        'guest'            => RedirectIfAuthenticated::class,
     ];
 }
