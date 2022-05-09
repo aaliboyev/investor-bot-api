@@ -17,7 +17,7 @@ class CheckAuth
 
     public function handle($request, Closure $next, ...$guards)
     {
-        $this->authenticate(['web']);
+        $this->authenticate(['web', 'api', 'sanctum']);
 
         return $next($request);
     }

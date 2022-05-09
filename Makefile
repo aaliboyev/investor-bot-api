@@ -11,7 +11,8 @@ db-cmd:
 
 down: stop-db stop-app stop-adminer stop-redis
 
-up: start-db start-app start-adminer start-redis
+up:
+	docker-compose up -d
 
 start-db:
 	docker-compose up -d db
@@ -37,3 +38,5 @@ stop-adminer:
 stop-redis:
 	docker-compose stop redis
 
+make stop:
+	docker-compose stop

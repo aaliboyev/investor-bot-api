@@ -201,5 +201,5 @@ return [
     |
     */
 
-    'throttling' => (bool) env('THROTTLING', true),
+    'throttling' => (bool) env('THROTTLING', false),
 ];
